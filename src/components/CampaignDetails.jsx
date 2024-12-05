@@ -10,14 +10,13 @@ const CampaignDetails = () => {
   
 
 
-
-  
-
   return (
-   <div className="card w-full bg-base-100 shadow-2xl mb-5 mt-5">
+    <div className="p-5 lg:p-0">
+
+   <div className="card w-full   bg-base-100 shadow-2xl mb-5 mt-5 ">
       {/* Campaign Image - Full Width */}
       <figure className="w-full">
-        <img src={imageURL} alt={campaignTitle} className="w-full h-80 object-cover" />
+        <img src={imageURL} alt={campaignTitle} className="w-full h-full object-cover" />
       </figure>
 
       {/* Campaign Details */}
@@ -50,6 +49,7 @@ const CampaignDetails = () => {
           </button>
         </div>
       </div>
+    </div>
     </div>
   );
 };
