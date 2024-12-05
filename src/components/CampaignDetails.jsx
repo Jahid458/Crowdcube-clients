@@ -11,7 +11,7 @@ const CampaignDetails = () => {
 
 
   return (
-    <div className="p-5 lg:p-0">
+    <div className="p-5 lg:p-16">
 
    <div className="card w-full   bg-base-100 shadow-2xl mb-5 mt-5 ">
       {/* Campaign Image - Full Width */}
@@ -43,9 +43,9 @@ const CampaignDetails = () => {
         </p>
 
         {/* Donate Button */}
-        <div className="card-actions mt-6 justify-end">
-          <button className="btn btn-success hover:bg-orange-600 hover:text-white flex items-center gap-2 px-6">
-            <FaDonate /> Donate Now
+        <div className="card-actions mt-6 justify-center">
+          <button className="btn btn-success hover:bg-orange-600 hover:text-white flex items-center gap-2 px-6 text-xl">
+            <FaDonate className="text-2xl" /> Donate Now
           </button>
         </div>
       </div>
