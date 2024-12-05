@@ -104,7 +104,7 @@ const Navbar = () => {
             <img
               src={user?.photoURL && user?.photoURL}
               alt=""
-              className="w-12 h-12 rounded-[50%] border-4 border-sky-500"
+              className="w-12 h-12 rounded-[50%] border-4 border-orange-500"
             />
           </div>
         ) : (
