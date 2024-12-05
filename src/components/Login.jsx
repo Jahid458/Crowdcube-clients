@@ -5,7 +5,7 @@ import { authContext } from "./AuthProvider";
 
 const Login = () => {
   const { handleLogin,googleLogin,setUser  } = useContext(authContext);
-  // const [error, setError] = useState();
+  const [error, setError] = useState();
 
 
   const LogGoogle = () => {
@@ -14,13 +14,11 @@ const Login = () => {
       setUser(res.user)
     })
     .catch((err) => {
+
       console.log(err, "Invalid Login");
     });
   };
 
-  const LogGithub = () => {
-  
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,7 +42,12 @@ const Login = () => {
       setUser(res.user)
     }
      )
-    .catch(err => console.log(err))
+    .catch(err => {
+      setError(err.message);
+      console.log(err)
+    }
+      
+      )
   };
 
   return (
@@ -68,7 +71,7 @@ const Login = () => {
           </div>
 
           {/* Password Field */}
-          <div className="form-control mb-6">
+          <div className="form-control">
             <label className="label">
               <span className="label-text">Password</span>
             </label>
@@ -82,12 +85,14 @@ const Login = () => {
             <Link to="/passreset" className="text-sm text-left text-blue-600 mt-1">
               Forgot Password?
             </Link>
-            {/* {error && (
-              <p className="text-md mt-2 text-red-500">
+          </div>
+
+           
+          {error && (
+              <p className="text-md  text-red-500">
                 Invalid Email or Password!
               </p>
-            )} */}
-          </div>
+            )}
 
           {/* Login Button */}
           <div className="form-control">
@@ -111,7 +116,6 @@ const Login = () => {
 
           {/* GitHub Login Button */}
           <button
-            onClick={LogGithub}
             className="btn btn-outline w-full flex items-center text-lg justify-center gap-2"
           >
             <FaGithub className="text-2xl" />
