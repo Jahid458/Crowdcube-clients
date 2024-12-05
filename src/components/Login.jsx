@@ -1,0 +1,134 @@
+import { useContext, useState } from "react";
+import {  Link } from "react-router-dom";
+import { FaGoogle, FaGithub } from "react-icons/fa";
+import { authContext } from "./AuthProvider";
+
+const Login = () => {
+  const { handleLogin,googleLogin,setUser  } = useContext(authContext);
+  // const [error, setError] = useState();
+
+
+  const LogGoogle = () => {
+    googleLogin()
+    .then((res) => {
+      setUser(res.user)
+    })
+    .catch((err) => {
+      console.log(err, "Invalid Login");
+    });
+  };
+
+  const LogGithub = () => {
+  
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log(email,password)
+    // handleLogin(email, password)
+    //   .then((res) => {
+    //     setUser(res.user);
+    //     navigate(location?.state ? location.state : "/");
+    //     toast.success("Login Successfully");
+    //   })
+    //   .catch((err) => {
+    //     setError(err.message);
+    //     toast.error("Invalid Login");
+    //   });
+
+    handleLogin(email,password)
+    .then((res) => {
+      alert('login')
+      setUser(res.user)
+    }
+     )
+    .catch(err => console.log(err))
+  };
+
+  return (
+    <div className="w-full min-h-screen flex justify-center items-center py-10 ">
+      <div className="card bg-base-100 shadow-2xl w-[980px] lg:max-w-xl max-w-sm md:max-w-lg p-6 rounded-lg">
+        <h2 className="text-3xl font-semibold text-center mb-6">Login Your Account</h2>
+
+        <form onSubmit={handleSubmit} className="card-body">
+          {/* Email Field */}
+          <div className="form-control mb-4">
+            <label className="label">
+              <span className="label-text">Email</span>
+            </label>
+            <input
+              name="email"
+              type="email"
+              placeholder="Enter your email"
+              className="input input-bordered w-full"
+              required
+            />
+          </div>
+
+          {/* Password Field */}
+          <div className="form-control mb-6">
+            <label className="label">
+              <span className="label-text">Password</span>
+            </label>
+            <input
+              name="password"
+              type="password"
+              placeholder="Enter your password"
+              className="input input-bordered w-full"
+              required
+            />
+            <Link to="/passreset" className="text-sm text-left text-blue-600 mt-1">
+              Forgot Password?
+            </Link>
+            {/* {error && (
+              <p className="text-md mt-2 text-red-500">
+                Invalid Email or Password!
+              </p>
+            )} */}
+          </div>
+
+          {/* Login Button */}
+          <div className="form-control">
+            <button className="btn btn-primary hover:bg-orange-600 hover:text-white text-xl text-white w-full">Login</button>
+          </div>
+
+          {/* OR Divider */}
+          <div className="divider">OR</div>
+
+          {/* Google Login Button */}
+          <button
+            onClick={LogGoogle}
+            className="btn btn-outline w-full flex items-center text-lg justify-center gap-2"
+          >
+            <FaGoogle className="text-2xl " />
+            Continue with Google
+          </button>
+
+          <div className="divider">OR</div>
+
+
+          {/* GitHub Login Button */}
+          <button
+            onClick={LogGithub}
+            className="btn btn-outline w-full flex items-center text-lg justify-center gap-2"
+          >
+            <FaGithub className="text-2xl" />
+            Continue with GitHub
+          </button>
+        </form>
+
+        {/* Register Link */}
+        <p className="text-center  text-sm">
+          Don&apos;t have an account?{" "}
+          <Link to="/register" className="text-blue-600 font-semibold">
+            Register
+          </Link>
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default Login;
