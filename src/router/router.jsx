@@ -9,6 +9,7 @@ import MyDonation from './../components/MyDonation';
 import CampaignDetails from "../components/CampaignDetails";
 import Login from "../components/Login";
 import Register from "../components/Register";
+import PrivateRoute from "../components/PrivateRoute";
 
 
 const router = createBrowserRouter([
@@ -33,7 +34,12 @@ const router = createBrowserRouter([
         },
         {
           path:"/addCampaign",
-          element:<AddCampaign></AddCampaign>
+          element:
+            <PrivateRoute>
+              <AddCampaign></AddCampaign>
+            </PrivateRoute>
+
+         
         },
         {
           path:'/myCampaign',
