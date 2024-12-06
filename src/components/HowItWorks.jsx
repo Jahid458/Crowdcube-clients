@@ -7,15 +7,14 @@ import { Typewriter } from "react-simple-typewriter";
 const HowItWorks = () => {
   return (
     <div className="p-5 lg:p-0">
-    <div className="bg-gray-200 rounded-2xl py-10 px-4 lg:px-16 mb-5">
-      {/* Section Title */}
+    <div className="bg-gray-200 rounded-2xl py-10 px-4 lg:px-16 mb-3">
+
       <h2 className="text-4xl font-bold text-center text-orange-600 mb-12">
         How <span className="text-blue-600">CrowdCube</span> Works
       </h2>
 
-      {/* Content Wrapper */}
       <div className="flex flex-col-reverse lg:flex-row items-center gap-10">
-        {/* Text Section */}
+
         <div className="lg:w-1/2 space-y-6">
           <h3 className="text-2xl font-semibold text-gray-800">
             The Process is Simple and Effective
@@ -26,7 +25,7 @@ const HowItWorks = () => {
             personal causes.
           </p>
 
-          {/* Steps */}
+    
           <div className="space-y-6">
             <Step
               icon={<FaLightbulb className="text-orange-600 lg:text-5xl text-3xl" />}
@@ -45,7 +44,6 @@ const HowItWorks = () => {
             />
           </div>
 
-          {/* Typewriter */}
           <h3 className="text-2xl font-semibold text-orange-600 mt-8">
             <Typewriter
               words={[
@@ -63,7 +61,7 @@ const HowItWorks = () => {
           </h3>
         </div>
 
-        {/* Animation Section */}
+
         <div className="flex-1 grid grid-cols-1 gap-6">
           <div className="w-full">
             <Lottie animationData={donationData} loop className="max-h-80 mx-auto" />
@@ -78,7 +76,6 @@ const HowItWorks = () => {
   );
 };
 
-// Step Component
 // eslint-disable-next-line react/prop-types
 const Step = ({ icon, title, description }) => (
   <div className="flex items-center gap-4">
