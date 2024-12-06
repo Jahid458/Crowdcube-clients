@@ -10,12 +10,14 @@ import CampaignDetails from "../components/CampaignDetails";
 import Login from "../components/Login";
 import Register from "../components/Register";
 import PrivateRoute from "../components/PrivateRoute";
+import ErrorPage from "../pages/ErrorPage";
 
 
 const router = createBrowserRouter([
   {
     path:"/",
     element:<MainLayout></MainLayout>,
+    errorElement:<ErrorPage></ErrorPage>,
     children:[
         {
           path:'/',
