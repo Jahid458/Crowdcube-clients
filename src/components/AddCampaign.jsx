@@ -1,8 +1,11 @@
+import { useContext } from "react";
+import { authContext } from "./AuthProvider";
 
 const AddCampaign = () => {
+  const { user } = useContext(authContext);
 
-  const handleCampaignSubmit = e =>{
-    e.preventDefault(); 
+  const handleCampaignSubmit = (e) => {
+    e.preventDefault();
     const form = e.target;
     const imageURL = form.imageURL.value;
     const campaignTitle = form.campaignTitle.value;
@@ -10,29 +13,32 @@ const AddCampaign = () => {
     const description = form.description.value;
     const minDonation = form.minDonation.value;
     const deadline = form.deadline.value;
-    const userEmail= form.userEmail.value;
-    const userName= form.userName.value;
-    // console.log(imageURL,campaignTitle,campaignType,description,minDonation,deadline,userEmail,userName)
-    const singleCampaigns ={imageURL,campaignTitle,campaignType,description,minDonation,deadline,userEmail,userName}
-    console.log(singleCampaigns)
+    const userEmail = form.userEmail.value;
+    const userName = form.userName.value;
+    const singleCampaigns = {
+      imageURL,
+      campaignTitle,
+      campaignType,
+      description,
+      minDonation,
+      deadline,
+      userEmail,
+      userName,
+    };
+    console.log(singleCampaigns);
 
-
-    fetch('http://localhost:5000/campaigns',{
+    fetch("http://localhost:5000/campaigns", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify(singleCampaigns),
     })
-    .then(res => res.json())
-    .then((data)=> {
-      alert("campaign data added",data)
-    } )
-
-
-
-
-  }
+      .then((res) => res.json())
+      .then((data) => {
+        alert("campaign data added", data);
+      });
+  };
   return (
     <div>
       <div className="container mx-auto mt-10 max-w-lg p-6 bg-white rounded-lg shadow-lg">
@@ -83,9 +89,9 @@ const AddCampaign = () => {
                 Select type
               </option>
               <option>Personal Issue</option>
-              <option >Startup</option>
-              <option >Business</option>
-              <option >Creative nameeas</option>
+              <option>Startup</option>
+              <option>Business</option>
+              <option>Creative Ideas</option>
             </select>
           </div>
 
@@ -138,6 +144,7 @@ const AddCampaign = () => {
               type="email"
               name="userEmail"
               className="input input-bordered w-full  bg-gray-200 "
+              defaultValue={user?.email || ""}
             />
           </div>
 
@@ -150,6 +157,7 @@ const AddCampaign = () => {
               type="text"
               name="userName"
               className="input input-bordered w-full bg-gray-200 "
+              defaultValue={user?.displayName || ""}
             />
           </div>
 

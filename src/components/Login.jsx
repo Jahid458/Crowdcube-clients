@@ -1,20 +1,22 @@
 import { useContext, useState } from "react";
-import {  Link } from "react-router-dom";
+import {  Link,  useLocation,  useNavigate } from "react-router-dom";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { authContext } from "./AuthProvider";
 
 const Login = () => {
-  const { handleLogin,googleLogin,setUser  } = useContext(authContext);
+  const { handleLogin,googleLogin,setUser } = useContext(authContext);
   const [error, setError] = useState();
+  const navigate = useNavigate();
+  const location = useLocation();
 
 
   const LogGoogle = () => {
     googleLogin()
     .then((res) => {
       setUser(res.user)
+      navigate(location?.state ? location.state : "/");
     })
     .catch((err) => {
-
       console.log(err, "Invalid Login");
     });
   };
@@ -38,16 +40,17 @@ const Login = () => {
 
     handleLogin(email,password)
     .then((res) => {
-      alert('login')
       setUser(res.user)
+      console.log(res.user)
+      navigate(location?.state ? location.state : "/");
+      
+      alert('login')
     }
      )
     .catch(err => {
       setError(err.message);
       console.log(err)
-    }
-      
-      )
+    })
   };
 
   return (

@@ -1,13 +1,43 @@
+import { useContext } from "react";
 import { FaDonate } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
+import { authContext } from "./AuthProvider";
 
 
 const CampaignDetails = () => {
+  const { user } = useContext(authContext);
 
   const singleCampaign = useLoaderData(); 
    const {imageURL,campaignTitle,campaignType,description,minDonation,deadline} = singleCampaign; 
   console.log(imageURL,campaignTitle,campaignType,description,minDonation,deadline)
-  
+
+  const handleDonate = () => {
+    const donationData = {
+      campaignTitle,
+      campaignType,
+      userName: user.displayName,
+      userEmail: user.email,
+      minDonation,
+      deadline,
+      description,
+    };
+
+    fetch('http://localhost:5000/donatedetails',{
+      method:'POST',
+      headers:{
+        "content-type":"application/json"
+      },
+      body: JSON.stringify(donationData),
+    })
+    .then(res => res.json())
+    .then((data) => {
+      alert('Donation Successfull!');
+      console.log("Donation Details", data)
+    })
+    .catch((err) =>{
+      console.log('Error Donating', err)
+    })
+  }
 
 
   return (
@@ -44,7 +74,9 @@ const CampaignDetails = () => {
 
         {/* Donate Button */}
         <div className="card-actions mt-6 justify-center">
-          <button className="btn btn-success hover:bg-orange-600 hover:text-white flex items-center gap-2 px-6 text-xl">
+          <button
+          onClick={() => handleDonate()}
+          className="btn btn-success hover:bg-orange-600 hover:text-white flex items-center gap-2 px-6 text-xl">
             <FaDonate className="text-2xl" /> Donate Now
           </button>
         </div>

@@ -4,7 +4,8 @@ import CampaigCard from "./CampaigCard";
 const RunningCampaign = () => {
   const [campaignList, setCampaignList] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/campaigns")
+    //campaigns
+    fetch("http://localhost:5000/homecampaign")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

@@ -5,7 +5,7 @@ import { authContext } from "./AuthProvider";
 
 const Register = () => {
 
-  const {handleRegister,googleLogin} = useContext(authContext)
+  const {handleRegister,googleLogin,updateUserProfile,setUser} = useContext(authContext)
   const [error,setError] = useState();
 
 
@@ -40,11 +40,16 @@ const Register = () => {
     // Add registration logic here
     handleRegister(email,password)
     .then((res) => {
-      alert('register')
+      setUser(res.user)
+      updateUserProfile({displayName:name,photoURL:photo})
+      alert('Register Sucessfull')
       console.log(res.user)
-    }
-     )
-    .catch(err => console.log(err))
+    })
+    .then(()=>{
+      setUser({displayName:name,photoURL:photo})
+    })
+
+    .catch(err => console.log("Invalid Register",err))
     
   };
 
