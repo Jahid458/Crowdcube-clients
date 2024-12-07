@@ -51,8 +51,9 @@ const router = createBrowserRouter([
           element:
           <PrivateRoute>
             <MyCampaign></MyCampaign>
-
           </PrivateRoute>
+
+         
         },
         {
           path:'/myDonation',
