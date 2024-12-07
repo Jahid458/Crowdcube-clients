@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Banner = () => {
   return (
     <div className="p-5 lg:p-0 mb-3">
@@ -15,9 +17,11 @@ const Banner = () => {
               Start and manage a professional fundraise to attract quality
               accredited investors.
             </p>
+            <Link to={`/addCampaign`}>
             <button className="btn bg-orange-600 text-white mt-5 rounded-2xl font-bold text-xl hover:text-black">
               Start Your Campaign
             </button>
+            </Link>
           </div>
           <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
             <a href="#slide4" className="btn btn-circle">

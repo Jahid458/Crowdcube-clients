@@ -9,7 +9,10 @@ const PrivateRoute = ({children}) => {
   const location = useLocation();
   // console.log(user)
   if(loading){
-    return children
+    //text-center text-2xl
+    return <div className="text-center text-5xl mt-36">
+      <span className="loading loading-bars loading-lg "></span>
+    </div>
   }
 
   if(user && user?.email){
