@@ -30,6 +30,7 @@ const AllCampaign = () => {
        
           <thead className="bg-gray-200 text-center text-gray-700">
             <tr>
+              <th className="p-3 border">Id</th>
               <th className="p-3 border">Title</th>
               <th className="p-3 border">Type</th>
               <th className="p-3 border">Minimum Donation</th>
@@ -40,8 +41,9 @@ const AllCampaign = () => {
 
  
           <tbody>
-            {campaigns.map((campaign) => (
+            {campaigns.map((campaign,index) => (
               <tr key={campaign._id} className="hover:bg-gray-100">
+                <td className="p-3 border text-center">{index + 1 }</td>
                 <td className="p-3 border text-center">{campaign.campaignTitle}</td>
                 <td className="p-3 border text-center">{campaign.campaignType}</td>
                 <td className="p-3 border text-center">{campaign.minDonation} USD</td>

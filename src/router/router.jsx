@@ -11,6 +11,7 @@ import Login from "../components/Login";
 import Register from "../components/Register";
 import PrivateRoute from "../components/PrivateRoute";
 import ErrorPage from "../pages/ErrorPage";
+import UpdateCampaign from "../components/UpdateCampaign";
 
 
 const router = createBrowserRouter([
@@ -59,6 +60,11 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <MyDonation></MyDonation>
           </PrivateRoute>
+        },
+        {
+          path:'/updatecampaign/:id',
+          element: <UpdateCampaign></UpdateCampaign>,
+          loader:({params}) => fetch(`http://localhost:5000/campaigns/${params.id}`)
         },
         {
           path:"login",
