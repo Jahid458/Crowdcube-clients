@@ -3,6 +3,7 @@ import { FaDonate } from "react-icons/fa";
 import { MdErrorOutline } from "react-icons/md"; 
 import { useLoaderData } from "react-router-dom";
 import { authContext } from "./AuthProvider";
+import toast from "react-hot-toast";
 
 const CampaignDetails = () => {
   const { user } = useContext(authContext);
@@ -18,13 +19,13 @@ const CampaignDetails = () => {
 
   const [showModal, setShowModal] = useState(false);
 
-  // Check if the campaign deadline has passed
+
   const currentDate = new Date();
   const isDeadlineOver = new Date(deadline) < currentDate;
 
   const handleDonate = () => {
     if (isDeadlineOver) {
-      setShowModal(true); // Show modal if the deadline is over
+      setShowModal(true); 
       return;
     }
 
@@ -47,13 +48,11 @@ const CampaignDetails = () => {
       body: JSON.stringify(donationData),
     })
       .then((res) => res.json())
+      // eslint-disable-next-line no-unused-vars
       .then((data) => {
-        alert("Donation Successful!");
-        console.log("Donation Details", data);
+        toast.success("Donation Successful!");
       })
-      .catch((err) => {
-        console.log("Error Donating", err);
-      });
+   
   };
 
   return (

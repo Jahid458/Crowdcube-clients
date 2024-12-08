@@ -2,6 +2,7 @@ import { useContext,useState } from "react";
 import { FaUser, FaEnvelope, FaLock, FaImage, FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { authContext } from "./AuthProvider";
+import Swal from "sweetalert2";
 
 const Register = () => {
 
@@ -14,6 +15,13 @@ const Register = () => {
     googleLogin()
     .then((res) => {
       console.log(res.user)
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Successfully Resgister",
+        showConfirmButton: false,
+        timer: 1500
+      });
     })
     .catch((err) => {
       console.log(err, "Invalid Login");
@@ -42,7 +50,13 @@ const Register = () => {
     .then((res) => {
       setUser(res.user)
       updateUserProfile({displayName:name,photoURL:photo})
-      alert('Register Sucessfull')
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Register Suceesfull!",
+        showConfirmButton: false,
+        timer: 1500
+      });
       console.log(res.user)
     })
     .then(()=>{

@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { ThemeProvider } from "./ThemeProvider";
+import { Toaster } from "react-hot-toast";
 
 
 
@@ -9,6 +10,8 @@ import { ThemeProvider } from "./ThemeProvider";
 const MainLayout = () => {
   return (
     <ThemeProvider>
+      <Toaster></Toaster>
+       
     <div className="bg-white dark:bg-black dark:text-white">
       <Navbar></Navbar>
   

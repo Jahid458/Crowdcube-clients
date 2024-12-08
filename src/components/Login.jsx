@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import {  Link,  useLocation,  useNavigate } from "react-router-dom";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { authContext } from "./AuthProvider";
+import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const { handleLogin,googleLogin,setUser } = useContext(authContext);
@@ -15,9 +17,17 @@ const Login = () => {
     .then((res) => {
       setUser(res.user)
       navigate(location?.state ? location.state : "/");
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "SuccessFully Login",
+        showConfirmButton: false,
+        timer: 1500
+      });
+
     })
     .catch((err) => {
-      console.log(err, "Invalid Login");
+      toast.error("Invalid Register",err)
     });
   };
 
@@ -26,30 +36,16 @@ const Login = () => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(email,password)
-    // handleLogin(email, password)
-    //   .then((res) => {
-    //     setUser(res.user);
-    //     navigate(location?.state ? location.state : "/");
-    //     toast.success("Login Successfully");
-    //   })
-    //   .catch((err) => {
-    //     setError(err.message);
-    //     toast.error("Invalid Login");
-    //   });
 
     handleLogin(email,password)
     .then((res) => {
       setUser(res.user)
-      console.log(res.user)
+      toast.success("LogIn Succesfully")
       navigate(location?.state ? location.state : "/");
-      
-      alert('login')
-    }
-     )
+  
+    })
     .catch(err => {
       setError(err.message);
-      console.log(err)
     })
   };
 

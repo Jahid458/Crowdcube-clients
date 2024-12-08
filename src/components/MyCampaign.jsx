@@ -86,7 +86,7 @@ const MyCampaign = () => {
                   <td className="border px-4 py-2">{campaign.deadline}</td>
                   <td className="border px-4 py-2 space-x-2">
                     <Link to={`/updatecampaign/${campaign._id}`}>
-                      <button className="btn btn-sm bg-orange-700">
+                      <button className="btn btn-sm bg-orange-600 hover:bg-green-300 hover:text-white">
                         Update
                       </button>
                     </Link>

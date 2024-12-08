@@ -9,7 +9,6 @@ const MyDonations = () => {
       .then((res) => res.json())
       .then((data) => {
         setDonations(data);
-        console.log(data);
       })
       .catch((err) => console.error(err));
   }, [user?.email]);

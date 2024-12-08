@@ -30,7 +30,7 @@ const UpdateCampaign = () => {
       userName,
     };
 
-    // console.log(singleCampaigns);
+
     fetch(`https://crowdcube-server-ivory.vercel.app/mycampaign/${data._id}`, {
       method: "PUT",
       headers: {

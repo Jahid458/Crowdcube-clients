@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { authContext } from "./AuthProvider";
+import toast from "react-hot-toast";
 
 const AddCampaign = () => {
   const { user } = useContext(authContext);
@@ -35,8 +36,9 @@ const AddCampaign = () => {
       body: JSON.stringify(singleCampaigns),
     })
       .then((res) => res.json())
+      // eslint-disable-next-line no-unused-vars
       .then((data) => {
-        alert("campaign data added", data);
+        toast.success('Campaign Added Successfully');
       });
   };
   return (

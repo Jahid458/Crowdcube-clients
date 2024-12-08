@@ -3,7 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaMoon, FaSun } from "react-icons/fa"; // For theme toggle icons
 import { authContext } from "./AuthProvider";
 import { useTheme } from "../Layout/ThemeProvider";
-// Import Theme Context
+
 
 const Navbar = () => {
   const { user, handleLogout } = useContext(authContext);
@@ -69,6 +69,7 @@ const Navbar = () => {
 
 
         <Link to="/" className="btn btn-ghost text-xl text-orange-600 dark:text-orange-400">
+      
           CrowdCube
         </Link>
       </div>

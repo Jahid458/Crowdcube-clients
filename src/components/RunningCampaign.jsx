@@ -4,15 +4,10 @@ import CampaigCard from "./CampaigCard";
 const RunningCampaign = () => {
   const [campaignList, setCampaignList] = useState([]);
   useEffect(() => {
-    //campaigns
     fetch("https://crowdcube-server-ivory.vercel.app/homecampaign")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        // const runningCampaigns = data.filter(
-        //   (campaign) => new Date(campaign.deadline) > new Date()
-        // );
-        // setCampaignList(runningCampaigns);
         setCampaignList(data);
       });
   }, []);
