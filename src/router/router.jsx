@@ -1,84 +1,87 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import MainLayout from "../Layout/MainLayout";
-import Home from "../pages/Home/Home";
-import AllCampaign from "../components/AllCampaign";
 import AddCampaign from "../components/AddCampaign";
-import MyCampaign from "../components/MyCampaign";
-import MyDonation from './../components/MyDonation';
+import AllCampaign from "../components/AllCampaign";
 import CampaignDetails from "../components/CampaignDetails";
 import Login from "../components/Login";
-import Register from "../components/Register";
+import MyCampaign from "../components/MyCampaign";
 import PrivateRoute from "../components/PrivateRoute";
-import ErrorPage from "../pages/ErrorPage";
+import Register from "../components/Register";
 import UpdateCampaign from "../components/UpdateCampaign";
-
+import MainLayout from "../Layout/MainLayout";
+import ErrorPage from "../pages/ErrorPage";
+import Home from "../pages/Home/Home";
+import MyDonation from "./../components/MyDonation";
 
 const router = createBrowserRouter([
   {
-    path:"/",
-    element:<MainLayout></MainLayout>,
-    errorElement:<ErrorPage></ErrorPage>,
-    children:[
-        {
-          path:'/',
-          element:<Home></Home>
-        },
-        {
-          path:'/allCampaign',
-          element:<AllCampaign></AllCampaign>
-        },
-        {
-          path:'/campaignDetails/:id',
-          element:
+    path: "/",
+    element: <MainLayout></MainLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
+      {
+        path: "/allCampaign",
+        element: <AllCampaign></AllCampaign>,
+      },
+      {
+        path: "/campaignDetails/:id",
+        element: (
           <PrivateRoute>
             <CampaignDetails></CampaignDetails>
-          </PrivateRoute>,
-          loader: ({params}) =>{
-            return fetch(`http://localhost:5000/campaigns/${params.id}`)
-          }
+          </PrivateRoute>
+        ),
+        loader: ({ params }) => {
+          return fetch(
+            `https://crowdcube-server-ivory.vercel.app/campaigns/${params.id}`
+          );
         },
-        {
-          path:"/addCampaign",
-          element:
-            <PrivateRoute>
-              <AddCampaign></AddCampaign>
-            </PrivateRoute>
-
-         
-        },
-        {
-          path:'/myCampaign',
-          element:
+      },
+      {
+        path: "/addCampaign",
+        element: (
+          <PrivateRoute>
+            <AddCampaign></AddCampaign>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myCampaign",
+        element: (
           <PrivateRoute>
             <MyCampaign></MyCampaign>
           </PrivateRoute>
-        },
-        {
-          path:'/myDonation',
-          element:
+        ),
+      },
+      {
+        path: "/myDonation",
+        element: (
           <PrivateRoute>
             <MyDonation></MyDonation>
           </PrivateRoute>
-        },
-        {
-          path:'/updatecampaign/:id',
-          element: <UpdateCampaign></UpdateCampaign>,
-          loader:({params}) => fetch(`http://localhost:5000/campaigns/${params.id}`)
-        },
-        {
-          path:"login",
-          element:<Login></Login>
-        },
-        {
-          path:"register",
-          element:<Register></Register>
-        }
-
-    ]
-  }
-])
-
-
+        ),
+      },
+      {
+        path: "/updatecampaign/:id",
+        element: <UpdateCampaign></UpdateCampaign>,
+        loader: ({ params }) =>
+          fetch(
+            `https://crowdcube-server-ivory.vercel.app/campaigns/${params.id}`
+          ),
+      },
+      {
+        path: "login",
+        element: <Login></Login>,
+      },
+      {
+        path: "register",
+        element: <Register></Register>,
+      },
+    ],
+  },
+]);
 
 export default router;

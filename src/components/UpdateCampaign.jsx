@@ -1,14 +1,13 @@
 import { useContext, useState } from "react";
-import { authContext } from "./AuthProvider";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
-
+import { authContext } from "./AuthProvider";
 
 const UpdateCampaign = () => {
   const { user } = useContext(authContext);
   const data = useLoaderData();
-  console.log(data)
-  const [formData,setFormData] = useState(data)
+  console.log(data);
+  const [formData, setFormData] = useState(data);
   const handleUpdateSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -30,30 +29,28 @@ const UpdateCampaign = () => {
       userEmail,
       userName,
     };
-    
+
     // console.log(singleCampaigns);
-    fetch(`http://localhost:5000/mycampaign/${data._id}`, {
+    fetch(`https://crowdcube-server-ivory.vercel.app/mycampaign/${data._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify(singleUpdateCampaigns),
     })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      if (data.modifiedCount > 0) {
-        Swal.fire({
-          title: "Success!",
-          text: "User Updated SucessFully",
-          icon: "success",
-          confirmButtonText: "Update",
-        });
-        setFormData(singleUpdateCampaigns);
-      }
-
-    })
-
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          Swal.fire({
+            title: "Success!",
+            text: "User Updated SucessFully",
+            icon: "success",
+            confirmButtonText: "Update",
+          });
+          setFormData(singleUpdateCampaigns);
+        }
+      });
   };
 
   return (
@@ -139,7 +136,7 @@ const UpdateCampaign = () => {
               name="minDonation"
               placeholder="Enter amount"
               className="input input-bordered w-full"
-              defaultValue={formData.minDonation }
+              defaultValue={formData.minDonation}
               required
             />
           </div>
@@ -188,7 +185,10 @@ const UpdateCampaign = () => {
 
           {/* Add Button  */}
           <div className="form-control">
-            <button type="submit" className="btn bg-orange-600 text-white w-full">
+            <button
+              type="submit"
+              className="btn bg-orange-600 text-white w-full"
+            >
               Update
             </button>
           </div>

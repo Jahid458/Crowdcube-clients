@@ -10,7 +10,9 @@ const MyCampaign = () => {
   useEffect(() => {
     // Fetch campaigns added by the specific user
     if (user?.email) {
-      fetch(`http://localhost:5000/mycampaign?email=${user?.email}`)
+      fetch(
+        `https://crowdcube-server-ivory.vercel.app/mycampaign?email=${user?.email}`
+      )
         .then((res) => res.json())
         .then((data) => {
           setMycampaigns(data);
@@ -33,7 +35,7 @@ const MyCampaign = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         // delete application form database and ui
-        fetch(`http://localhost:5000/mycampaign/${id}`, {
+        fetch(`https://crowdcube-server-ivory.vercel.app/mycampaign/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

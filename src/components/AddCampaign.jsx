@@ -27,7 +27,7 @@ const AddCampaign = () => {
     };
     console.log(singleCampaigns);
 
-    fetch("http://localhost:5000/campaigns", {
+    fetch("https://crowdcube-server-ivory.vercel.app/campaigns", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -41,7 +41,7 @@ const AddCampaign = () => {
   };
   return (
     <div>
-      <div className="container mx-auto mt-10 max-w-lg p-6 bg-white rounded-lg shadow-lg">
+      <div className="container mx-auto mt-10 max-w-lg p-6 bg-white rounded-lg shadow-lg mb-10">
         <h2 className="text-2xl font-bold text-gray-800 mb-6">
           Add New Campaign
         </h2>

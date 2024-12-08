@@ -1,21 +1,33 @@
 import { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-// import usericon from "../assets/user.png";
+import { FaMoon, FaSun } from "react-icons/fa"; // For theme toggle icons
 import { authContext } from "./AuthProvider";
+import { useTheme } from "../Layout/ThemeProvider";
+// Import Theme Context
 
 const Navbar = () => {
   const { user, handleLogout } = useContext(authContext);
-
+  const { isDarkMode, toggleTheme } = useTheme();
   const navigate = useNavigate();
 
   const logoutFunc = () => {
     handleLogout();
-    navigate("login");
+    navigate("/login");
   };
 
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "All Campaign", path: "/allCampaign" },
+    { name: "Add Campaign", path: "/addCampaign" },
+    { name: "My Campaign", path: "/myCampaign" },
+    { name: "My Donation", path: "/myDonation" },
+  ];
+
   return (
-    <div className="navbar bg-base-100 container mx-auto">
+    <div className="navbar container mx-auto dark:bg-gray-900 dark:text-white ">
+  
       <div className="navbar-start">
+
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
@@ -35,97 +47,67 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3  w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 dark:bg-gray-800 rounded-box z-10 mt-3 w-52 p-2 shadow"
           >
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                `${isActive ? " text-orange-600" : "hover:text-orange-600"}`
-              }
-            >
-              Home
-            </NavLink>
-            <NavLink
-              to="/allCampaign"
-              className={({ isActive }) =>
-                `${isActive ? " text-orange-600" : "hover:text-orange-600"}`
-              }
-            >
-              All Campaign
-            </NavLink>
-            <NavLink
-              to="/addCampaign"
-              className={({ isActive }) =>
-                `${isActive ? " text-orange-600" : "hover:text-orange-600"}`
-              }
-            >
-              Add Campaign
-            </NavLink>
-            <NavLink
-              to="/myCampaign"
-              className={({ isActive }) =>
-                `${isActive ? " text-orange-600" : "hover:text-orange-600"}`
-              }
-            >
-              My Campaign
-            </NavLink>
-            <NavLink
-              to="/myDonation"
-              className={({ isActive }) =>
-                `${isActive ? " text-orange-600" : "hover:text-orange-600"}`
-              }
-            >
-              My Donation
-            </NavLink>
+            {navItems.map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                className={({ isActive }) =>
+                  `block px-4 py-2 ${
+                    isActive
+                      ? "text-orange-600 font-bold"
+                      : "hover:text-orange-600"
+                  }`
+                }
+              >
+                {item.name}
+              </NavLink>
+            ))}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl text-orange-600">CrowdCube</a>
+
+
+        <Link to="/" className="btn btn-ghost text-xl text-orange-600 dark:text-orange-400">
+          CrowdCube
+        </Link>
       </div>
-      <div className="navbar-center hidden lg:flex ">
-        <ul className="menu menu-horizontal px-1 gap-5 ">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `${isActive ? " text-orange-600" : "hover:text-orange-600"}`
-            }
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/allCampaign"
-            className={({ isActive }) =>
-              `${isActive ? " text-orange-600" : "hover:text-orange-600"}`
-            }
-          >
-            All Campaign
-          </NavLink>
-          <NavLink
-            to="/addCampaign"
-            className={({ isActive }) =>
-              `${isActive ? " text-orange-600" : "hover:text-orange-600"}`
-            }
-          >
-            Add Campaign
-          </NavLink>
-          <NavLink
-            to="/myCampaign"
-            className={({ isActive }) =>
-              `${isActive ? " text-orange-600" : "hover:text-orange-600"}`
-            }
-          >
-            My Campaign
-          </NavLink>
-          <NavLink
-            to="/myDonation"
-            className={({ isActive }) =>
-              `${isActive ? " text-orange-600" : "hover:text-orange-600"}`
-            }
-          >
-            My Donation
-          </NavLink>
+
+  
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal px-1 gap-5">
+          {navItems.map((item) => (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              className={({ isActive }) =>
+                `text-lg ${
+                  isActive
+                    ? "text-orange-600 font-bold"
+                    : "hover:text-orange-600"
+                }`
+              }
+            >
+              {item.name}
+            </NavLink>
+          ))}
         </ul>
       </div>
-      <div className="navbar-end gap-3">
+
+
+      <div className="navbar-end flex items-center gap-3">
+      
+        <button
+          onClick={toggleTheme}
+          className="btn btn-circle btn-outline dark:bg-gray-800"
+        >
+          {isDarkMode ? (
+            <FaSun className="text-yellow-500 text-xl" />
+          ) : (
+            <FaMoon className="text-gray-800 text-xl" />
+          )}
+        </button>
+
         {user?.email ? (
           <div className="flex items-center gap-3">
             <div
@@ -133,8 +115,8 @@ const Navbar = () => {
               data-tip={user?.displayName || "Anonymous"}
             >
               <img
-                src={user?.photoURL}
-                alt=""
+                src={user?.photoURL || "https://i.pravatar.cc/150"}
+                alt="User Avatar"
                 className="w-12 h-12 rounded-full border-4 border-orange-500"
               />
             </div>
@@ -144,7 +126,7 @@ const Navbar = () => {
           </div>
         ) : (
           <Link to="/login">
-            <a className="btn lg:w-20 w-14">Login</a>
+            <button className="btn lg:w-20 w-14">Login</button>
           </Link>
         )}
       </div>

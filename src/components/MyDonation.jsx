@@ -1,18 +1,16 @@
-import  { useEffect, useState, useContext } from "react";
-import { authContext } from "./AuthProvider"; 
+import { useContext, useEffect, useState } from "react";
+import { authContext } from "./AuthProvider";
 
 const MyDonations = () => {
   const [donations, setDonations] = useState([]);
-  const { user } = useContext(authContext)
+  const { user } = useContext(authContext);
   useEffect(() => {
-    fetch(`http://localhost:5000/mycampaign/${user?.email}`)
+    fetch(`https://crowdcube-server-ivory.vercel.app/mycampaign/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
-        setDonations(data)
-        console.log(data)
-      }
-       
-    )
+        setDonations(data);
+        console.log(data);
+      })
       .catch((err) => console.error(err));
   }, [user?.email]);
 
@@ -31,7 +29,6 @@ const MyDonations = () => {
               key={donation._id}
               className="card bg-base-100 shadow-xl border border-gray-200"
             >
-
               <figure className="w-full h-48">
                 <img
                   src={donation.imageURL}
@@ -40,11 +37,8 @@ const MyDonations = () => {
                 />
               </figure>
 
-
               <div className="card-body">
-                <h2 className="card-title text-xl font-semibold mb-2">
-
-                </h2>
+                <h2 className="card-title text-xl font-semibold mb-2"></h2>
                 <p className="text-gray-600 text-xl">
                   <span className="font-bold">Type:</span>{" "}
                   {donation.campaignType}
@@ -62,13 +56,10 @@ const MyDonations = () => {
                   {new Date(donation.deadline).toDateString()}
                 </p>
 
-     
                 <p className="text-gray-600 text-sm">
                   <span className="font-bold">Donor Email:</span>{" "}
                   {donation.userEmail}
                 </p>
-
-               
               </div>
             </div>
           ))}
@@ -79,4 +70,3 @@ const MyDonations = () => {
 };
 
 export default MyDonations;
-

@@ -5,7 +5,7 @@ const RunningCampaign = () => {
   const [campaignList, setCampaignList] = useState([]);
   useEffect(() => {
     //campaigns
-    fetch("http://localhost:5000/homecampaign")
+    fetch("https://crowdcube-server-ivory.vercel.app/homecampaign")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -27,14 +27,13 @@ const RunningCampaign = () => {
         and innovation, bringing hope and opportunities to those in need.
       </p>
       <div className="grid lg:grid-cols-3 grid-cols-1 lg:p-0 p-10">
-      {campaignList.map((singleCampaign) => (
-        <CampaigCard
-          key={singleCampaign._id}
-          campaignList={singleCampaign}
-        ></CampaigCard>
-      ))}
+        {campaignList.map((singleCampaign) => (
+          <CampaigCard
+            key={singleCampaign._id}
+            campaignList={singleCampaign}
+          ></CampaigCard>
+        ))}
       </div>
-
     </div>
   );
 };
