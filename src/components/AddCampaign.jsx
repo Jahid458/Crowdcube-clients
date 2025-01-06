@@ -43,7 +43,7 @@ const AddCampaign = () => {
   };
   return (
     <div>
-      <div className="container mx-auto mt-10 max-w-lg p-6 bg-white rounded-lg shadow-lg mb-10">
+      <div className="container mx-auto mt-10 max-w-lg p-10 bg-white rounded-lg shadow-lg mb-10 p-">
         <h2 className="text-2xl font-bold text-gray-800 mb-6">
           Add New Campaign
         </h2>
@@ -58,7 +58,7 @@ const AddCampaign = () => {
               type="url"
               name="imageURL"
               placeholder="Enter image URL"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full dark:text-black"
               required
             />
           </div>
@@ -72,7 +72,7 @@ const AddCampaign = () => {
               type="text"
               name="campaignTitle"
               placeholder="Enter campaign title"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full dark:text-black"
               required
             />
           </div>
@@ -84,7 +84,7 @@ const AddCampaign = () => {
             </label>
             <select
               name="campaignType"
-              className="select select-bordered w-full"
+              className="select select-bordered w-full dark:text-black"
               required
             >
               <option disabled selected>
@@ -105,7 +105,7 @@ const AddCampaign = () => {
             <textarea
               name="description"
               placeholder="Write a brief description..."
-              className="textarea textarea-bordered w-full"
+              className="textarea textarea-bordered w-full dark:text-black"
               required
             ></textarea>
           </div>
@@ -119,7 +119,7 @@ const AddCampaign = () => {
               type="number"
               name="minDonation"
               placeholder="Enter amount"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full dark:text-black"
               required
             />
           </div>
@@ -132,7 +132,7 @@ const AddCampaign = () => {
             <input
               type="date"
               name="deadline"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full dark:text-black"
               required
             />
           </div>
@@ -145,7 +145,7 @@ const AddCampaign = () => {
             <input
               type="email"
               name="userEmail"
-              className="input input-bordered w-full  bg-gray-200 "
+              className="input input-bordered w-full  bg-gray-200 dark:text-black"
               defaultValue={user?.email || ""}
             />
           </div>
@@ -158,14 +158,14 @@ const AddCampaign = () => {
             <input
               type="text"
               name="userName"
-              className="input input-bordered w-full bg-gray-200 "
+              className="input input-bordered w-full bg-gray-200 dark:text-black"
               defaultValue={user?.displayName || ""}
             />
           </div>
 
           {/* Add Button  */}
           <div className="form-control">
-            <button type="submit" className="btn btn-primary w-full">
+            <button type="submit" className="btn btn-primary w-full dark:text-white">
               Add
             </button>
           </div>

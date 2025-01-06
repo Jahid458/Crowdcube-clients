@@ -6,9 +6,10 @@ import { authContext } from "./AuthProvider";
 const MyCampaign = () => {
   const { user } = useContext(authContext);
   const [mycampaigns, setMycampaigns] = useState([]);
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
-    // Fetch campaigns added by the specific user
+
     if (user?.email) {
       fetch(
         `https://crowdcube-server-ivory.vercel.app/mycampaign?email=${user?.email}`
@@ -16,14 +17,16 @@ const MyCampaign = () => {
         .then((res) => res.json())
         .then((data) => {
           setMycampaigns(data);
+          setLoading(false); 
         })
-        .catch((error) => console.error("Error fetching campaigns:", error));
+        .catch((error) => {
+          console.error("Error fetching campaigns:", error);
+          setLoading(false); 
+        });
     }
   }, [user?.email]);
 
   const handleDelete = (id) => {
-    console.log(id);
-
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -34,23 +37,16 @@ const MyCampaign = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        // delete application form database and ui
         fetch(`https://crowdcube-server-ivory.vercel.app/mycampaign/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
           .then((data) => {
-            // console.log(data);
             if (data.deletedCount) {
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your application successfully deleted.",
-                icon: "success",
-              });
+              Swal.fire("Deleted!", "Your campaign has been deleted.", "success");
               const remaining = mycampaigns.filter(
                 (campaign) => campaign._id !== id
               );
-
               setMycampaigns(remaining);
             }
           });
@@ -63,7 +59,11 @@ const MyCampaign = () => {
       <h2 className="text-2xl font-bold mb-4 text-center text-orange-600">
         My Campaigns
       </h2>
-      {mycampaigns.length > 0 ? (
+      {loading ? (
+        <div className="flex items-center justify-center h-64">
+          <div className="w-12 h-12 border-4 border-dashed rounded-full animate-spin border-orange-500"></div>
+        </div>
+      ) : mycampaigns.length > 0 ? (
         <div className="overflow-x-auto">
           <table className="table w-full text-center border-collapse border border-gray-300">
             <thead>
@@ -103,7 +103,7 @@ const MyCampaign = () => {
           </table>
         </div>
       ) : (
-        <p className="text-gray-600  text-center text-2xl">
+        <p className="text-gray-600 text-center text-2xl">
           No campaigns added yet.
         </p>
       )}

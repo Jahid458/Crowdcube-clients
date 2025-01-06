@@ -12,6 +12,8 @@ import MainLayout from "../Layout/MainLayout";
 import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home/Home";
 import MyDonation from "./../components/MyDonation";
+import BlogAndReview from "../components/BlogAndReview";
+import Contact from "../components/Contact ";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +51,10 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path:"review",
+        element:<BlogAndReview></BlogAndReview>
+      },
+      {
         path: "/myCampaign",
         element: (
           <PrivateRoute>
@@ -63,6 +69,10 @@ const router = createBrowserRouter([
             <MyDonation></MyDonation>
           </PrivateRoute>
         ),
+      },
+      {
+        path:'contact',
+        element:<Contact></Contact>
       },
       {
         path: "/updatecampaign/:id",

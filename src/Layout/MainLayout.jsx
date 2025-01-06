@@ -4,23 +4,18 @@ import Navbar from "../components/Navbar";
 import { ThemeProvider } from "./ThemeProvider";
 import { Toaster } from "react-hot-toast";
 
-
-
-
 const MainLayout = () => {
   return (
     <ThemeProvider>
-      <Toaster></Toaster>
-       
-    <div className="bg-white dark:bg-black dark:text-white">
-      <Navbar></Navbar>
-  
-      <div className="min-h-[calc(100vh-264px)] container mx-auto ">
-        <Outlet></Outlet>
+      <Toaster />
+      <div className="bg-white dark:bg-black dark:text-white flex flex-col min-h-screen">
+ 
+        <Navbar />
+        <div className="flex-grow container mx-auto dark:bg-gray-900 py-10 dark:text-white">
+          <Outlet />
+        </div>
+        <Footer />
       </div>
-      <Footer></Footer>
-  
-    </div>
     </ThemeProvider>
   );
 };

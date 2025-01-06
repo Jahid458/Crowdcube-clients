@@ -1,7 +1,7 @@
 import '@fortawesome/fontawesome-free/css/all.min.css';
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-gray-300 py-10">
+    <footer className="bg-gray-900 text-gray-300 py-10 mt-9">
 
       <div className="container mx-auto px-5 grid grid-cols-1 md:grid-cols-4 gap-8">
   
@@ -15,9 +15,9 @@ const Footer = () => {
         <div>
           <h6 className="text-lg font-semibold text-white mb-4">Services</h6>
           <ul className="space-y-2">
-            <li><a href="#" className="hover:text-orange-400 transition">Branding</a></li>
-            <li><a href="#" className="hover:text-orange-400 transition">Design</a></li>
-            <li><a href="#" className="hover:text-orange-400 transition">Marketing</a></li>
+            <li><a href="/allCampaign" className="hover:text-orange-400 transition">All Campaign</a></li>
+            <li><a href="/myCampaign" className="hover:text-orange-400 transition">My Campaign</a></li>
+            <li><a href="/myDonation" className="hover:text-orange-400 transition">My Donation</a></li>
             <li><a href="#" className="hover:text-orange-400 transition">Advertisement</a></li>
           </ul>
         </div>
@@ -26,9 +26,8 @@ const Footer = () => {
           <h6 className="text-lg font-semibold text-white mb-4">Company</h6>
           <ul className="space-y-2">
             <li><a href="#" className="hover:text-orange-400 transition">About Us</a></li>
-            <li><a href="#" className="hover:text-orange-400 transition">Contact</a></li>
-            <li><a href="#" className="hover:text-orange-400 transition">Jobs</a></li>
-            <li><a href="#" className="hover:text-orange-400 transition">Press Kit</a></li>
+            <li><a href="/contact" className="hover:text-orange-400 transition">Contact</a></li>
+            <li><a href="/review" className="hover:text-orange-400 transition">Review</a></li>
           </ul>
         </div>
 

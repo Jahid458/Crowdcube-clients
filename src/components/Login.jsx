@@ -50,21 +50,21 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full min-h-screen flex justify-center items-center py-10 ">
-      <div className="card bg-base-100 shadow-2xl w-[980px] lg:max-w-xl max-w-sm md:max-w-lg p-6 rounded-lg">
-        <h2 className="text-3xl font-semibold text-center mb-6">Login Your Account</h2>
+    <div className="w-full min-h-screen flex justify-center items-center py-10  ">
+      <div className="card bg-base-100 shadow-2xl w-[980px] lg:max-w-xl max-w-sm md:max-w-lg p-6 rounded-lg dark:bg-black ">
+        <h2 className="text-3xl font-semibold text-center mb-6 dark:text-white">Login Your Account</h2>
 
         <form onSubmit={handleSubmit} className="card-body">
           {/* Email Field */}
           <div className="form-control mb-4">
             <label className="label">
-              <span className="label-text">Email</span>
+              <span className="label-text dark:text-white">Email</span>
             </label>
             <input
               name="email"
               type="email"
               placeholder="Enter your email"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full dark:text-black"
               required
             />
           </div>
@@ -72,13 +72,13 @@ const Login = () => {
           {/* Password Field */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Password</span>
+              <span className="label-text dark:text-white">Password</span>
             </label>
             <input
               name="password"
               type="password"
               placeholder="Enter your password"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full dark:text-black"
               required
             />
             <Link to="/passreset" className="text-sm text-left text-blue-600 mt-1">

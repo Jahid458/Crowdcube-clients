@@ -19,15 +19,27 @@ const Navbar = () => {
   const navItems = [
     { name: "Home", path: "/" },
     { name: "All Campaign", path: "/allCampaign" },
-    { name: "Add Campaign", path: "/addCampaign" },
-    { name: "My Campaign", path: "/myCampaign" },
-    { name: "My Donation", path: "/myDonation" },
+
+ 
+
+    // { name: "Add Campaign", path: "/contact" },
+    // { name: "My Campaign", path: "/myCampaign" },
+    // { name: "My Donation", path: "/myDonation" },
+    ...(user?.email
+      ? [
+          { name: "Add Campaign", path: "/addCampaign" },
+          { name: "My Campaign", path: "/myCampaign" },
+          { name: "My Donation", path: "/myDonation" },
+        ]
+      : []),
+      { name: "Review", path: "/review" },
+      { name: "Contact", path: "/contact" },
   ];
 
   return (
-    <div className="navbar container mx-auto dark:bg-gray-900 dark:text-white ">
-  
-      <div className="navbar-start">
+    <div className="navbar fixed top-0 bg-orange-100   mx-auto dark:bg-gray-900 dark:text-white z-50">
+    
+      <div className="navbar-start lg:ml-3">
 
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -76,7 +88,7 @@ const Navbar = () => {
       </div>
 
   
-      <div className="navbar-center hidden lg:flex">
+      <div className="navbar-center hidden lg:flex ">
         <ul className="menu menu-horizontal px-1 gap-5">
           {navItems.map((item) => (
             <NavLink
@@ -97,7 +109,7 @@ const Navbar = () => {
       </div>
 
 
-      <div className="navbar-end flex items-center gap-3">
+      <div className="navbar-end flex items-center gap-3 lg:mr-8">
       
         <button
           onClick={toggleTheme}

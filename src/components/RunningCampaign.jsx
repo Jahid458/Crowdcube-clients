@@ -13,15 +13,15 @@ const RunningCampaign = () => {
   }, []);
   return (
     <div>
-      <h1 className="md:text-3xl text-lg text-center font-bold">
+      <h1 className="md:text-3xl text-lg text-center font-bold mt-10">
         Running Campaign Sections
       </h1>
-      <p className="md:text-xl w-3/4 md:w-5/6 lg:mx-14 mx-14 text-center lg:w-4/10 font-semibold mb-6 mt-2">
+      <p className="md:text-xl w-3/4 md:w-5/6 lg:mx-14 mx-14 text-center font-semibold mb-6 mt-2">
         Join our efforts to create impactful change by supporting ongoing
         campaigns focused on education, sustainability, community development,
         and innovation, bringing hope and opportunities to those in need.
       </p>
-      <div className="grid lg:grid-cols-3 grid-cols-1 lg:p-0 p-10">
+      <div className="grid lg:grid-cols-4 grid-cols-1 lg:p-5 gap-3 p-10 dark:text-white">
         {campaignList.map((singleCampaign) => (
           <CampaigCard
             key={singleCampaign._id}
