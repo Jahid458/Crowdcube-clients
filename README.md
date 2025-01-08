@@ -11,6 +11,20 @@ CrowdCube is an innovative crowdfunding platform that empowers individuals and o
 - MY Campaign page Update And delete
 - Donation Added This Page
 
+### Project Dependencies
+
+This project uses the following dependencies:
+
+```json
+{
+  "react": "^18.2.0",
+  "react-dom": "^18.2.0",
+  "react-icons": "^5.0.1",
+  "react-scroll": "^1.9.0",
+  "react-slick": "^0.30.2",
+  "slick-carousel": "^1.8.1"
+}
+
 
 # Live URL 
 https://crowdcube-crowd-funding.web.app/
